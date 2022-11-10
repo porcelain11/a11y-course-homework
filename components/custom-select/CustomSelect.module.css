@@ -1,0 +1,94 @@
+.combo {
+    display: block;
+    margin-bottom: 1.5em;
+    max-width: 400px;
+    position: relative;
+
+}
+
+.comboExample {
+  align-self: flex-end;
+  margin-right: 25px;
+}
+
+@media screen and (max-width: 800px) {
+  .comboExample {
+    align-self: flex-start;
+    margin-left: 40px;
+  }
+}
+  
+.comboInput {
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  display: block;
+  font-size: 1em;
+  padding: 14px 20px;
+  text-align: left;
+  min-width: 289px;
+  min-height: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.comboInput::after {
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+    content: "";
+    display: block;
+    height: 14px;
+    pointer-events: none;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translate(0, -65%) rotate(45deg);
+    width: 14px;
+}
+
+  
+.comboInput:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+.comboLabel {
+  display: block;
+  margin-bottom: 0.25em;
+}
+
+.comboMenu {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(0 0 0 / 75%);
+  border-radius: 5px;
+  display: none;
+  max-height: 300px;
+  overflow-y: scroll;
+  left: 0;
+  position: absolute;
+  top: calc(100% + 5px);
+  width: 100%;
+  z-index: 100;
+}
+
+.open .comboMenu {
+  display: block;
+}
+
+.comboOption {
+  padding: 10px 20px;
+}
+
+.comboOption:hover {
+  background-color: #E9E9E9;
+}
+  
+.optionCurrent {
+  outline: 3px solid -webkit-focus-ring-color;
+  outline-offset: -3px;
+}
+  
+.comboOption[aria-selected="true"] {
+  background-color: #E9E9E9;
+  position: relative;
+}
+  

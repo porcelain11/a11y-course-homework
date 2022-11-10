@@ -1,0 +1,19 @@
+.video {
+  padding: 0 25px;
+}
+
+.videoWrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 378px;
+    margin: 0;
+    margin-bottom: 50px;
+    padding: 0;
+}
+  
+.videoFrame {
+    width: 100%;
+    max-width: 100%;
+    min-width: 378px;
+    height: 500px;
+}

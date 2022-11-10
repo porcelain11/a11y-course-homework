@@ -1,0 +1,13 @@
+.successMessage {
+    color: #4682B4;
+    font-weight: 700;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.successMessage svg {
+    fill: #4682B4;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

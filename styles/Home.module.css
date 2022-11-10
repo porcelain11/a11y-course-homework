@@ -1,10 +1,18 @@
 .container {
+  margin: 0;
   padding: 0 2rem;
+  width: 100vw;
+  max-width: 100vw;
+  min-width: 378px;
+  height: auto;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 calc(128px - 12.5px);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -12,118 +20,131 @@
   align-items: center;
 }
 
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
+@media screen and (max-width: 800px) {
+  .main {
+      padding: 0 10px;
+  }
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+.btnInverted {
+  color: #FFFFFF;
+  background: #000000;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.btnLight {
+  color:  #000000;
+  background: #FFFFFF;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+
+.btn {
+  border-radius: 5px;
+  text-align: center;
+  padding: 13px 25px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 29px;
+  box-shadow: none;
+  border: 1px solid currentColor;
 }
 
-.title {
+.btn:focus {
+  outline-offset: 3px;
+}
+
+.btn:hover:enabled {
+  color: #FFFFFF;
+  background-color: #4682B4;
+  border: 0;
+  outline: 2px solid #4682B4;
+  outline-offset: 3px;
+}
+
+.btn:active {
+  opacity: 0.5;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.errorField {
+  border: 3px dashed #B22222;	
+}
+
+.contentSection {
+  width: 100%;
+  max-width: 100%;
   margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  margin-bottom: 50px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.title,
-.description {
+.contentSection:last-of-type {
+  margin-bottom: 20px;
+}
+
+.sectionHeading {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 61px;
+  padding: 5px;
+  margin: 0;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-}
-
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
+.catalogList {
+  width: 100%;
+  max-width: 100%;
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  padding: 0 12.5px;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.catalogListItem {
+  width: calc(100% / 3 - 25px);
+  min-width: 378px;
+  margin: 0 12.5px;
+  margin-bottom: 30px;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@media screen and (max-width: 800px) {
+  .catalogList {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+  }
+
+  .catalogListItem {
+    margin: 0;
+    margin-bottom: 20px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
+

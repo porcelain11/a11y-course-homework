@@ -1,0 +1,99 @@
+.productCard {
+    width: 100%;
+    max-width: 100%;
+    min-width: 378px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    position: relative;
+}
+
+.productCardLikes {
+    align-self: flex-end;
+    padding: 5px;
+   
+}
+
+.productCardLikes p {
+    padding: 0 10px;
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.productCardLikes > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.productCardLikes svg {
+    width: 20px;
+    height: 20px;
+}
+
+.imgWrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 236px;
+}
+
+.productCardImg {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 25px;
+    padding-top: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+    margin: 0;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+
+.price {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.price > * {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.price > p {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+}
+
+.priceOld {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: gray;
+    text-decoration: line-through;
+}
+
+.productCardBtn {
+    width: 100%;
+    max-width: 100%;
+}
