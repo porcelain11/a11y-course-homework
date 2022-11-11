@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { getRandomInt } from './utils';
 
+export const DEFAULT_SORT_ORDER = 3;
+
 export const productData = new Array(3)
   .fill({})
   .map((i) => ({

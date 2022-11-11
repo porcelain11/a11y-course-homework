@@ -99,7 +99,12 @@ function Modal(props: ModalProps) {
 
   return (
     <FocusTrap active={isShown}>
-      <div className={styles.modal} role='dialog'>
+      <div
+        className={styles.modal}
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='modalHeading'
+      >
         <div className={styles.modalContent}>
           <button
             ref={closeBtnRef}
@@ -122,7 +127,9 @@ function Modal(props: ModalProps) {
             <span className={homeStyles.visuallyHidden}>Закрыть</span>
           </button>
           <h2 className={styles.modalHeading}>{productName}</h2>
-          <p className={styles.modalText}>Оформление заказа</p>
+          <p className={styles.modalText} id='modalHeading'>
+            Оформление заказа
+          </p>
 
           <form className={styles.modalForm} onSubmit={handleSubmit} noValidate>
             <span className={styles.clue}>

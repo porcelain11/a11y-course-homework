@@ -8,7 +8,7 @@ import CustomSelect from '../components/custom-select';
 import ProductCard from '../components/product-card';
 import Modal from '../components/modal';
 import { sortProducts } from '../utils';
-import { productData } from '../constants';
+import { productData, DEFAULT_SORT_ORDER } from '../constants';
 import styles from '../styles/Home.module.css';
 import type { ProductCardProps } from '../components/product-card';
 
@@ -18,7 +18,6 @@ type StaticProps = {
 
 export default function Home(props: StaticProps) {
   const { poductItems } = props;
-  const DEFAULT_SORT_ORDER = 3;
   const [sortOrder, setSortOrder] = useState(DEFAULT_SORT_ORDER);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeProductID, setActiveProductID] = useState('');
@@ -136,12 +135,8 @@ export default function Home(props: StaticProps) {
 // It won't be called on client-side, so you can even do
 // direct database queries.
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
   const poductItems = productData;
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
     props: {
       poductItems,

@@ -43,7 +43,7 @@ export default function ProductCard(props: ProductCardProps) {
       </div>
 
       <div className={styles.container}>
-        <div className={styles.productCardLikes} role='group'>
+        <div className={styles.productCardLikes}>
           <p>
             {likes} <span className={homeStyles.visuallyHidden}>лайков</span>
           </p>
@@ -81,23 +81,25 @@ export default function ProductCard(props: ProductCardProps) {
           </svg>
         </div>
         <p className={styles.title}>{productName}</p>
-        <div
-          className={styles.price}
-          aria-label={`Цена ${price} ${getProperCurrencyMode(price)}, ${
-            oldPrice ? `старая цена ${oldPrice}` : ''
-          }`}
-        >
+        <div className={styles.price}>
           <p
             style={{
               color: oldPrice ? '#FF0000' : '#000000',
             }}
-            aria-hidden='true'
           >
+            <span className={homeStyles.visuallyHidden}>Цена</span>
             {`${price} `}&#8381;
+            <span className={homeStyles.visuallyHidden}>
+              {getProperCurrencyMode(price)}
+            </span>
           </p>
           {oldPrice && (
-            <p aria-hidden='true' className={styles.priceOld}>
+            <p className={styles.priceOld}>
+              <span className={homeStyles.visuallyHidden}>старая цена</span>
               {`${oldPrice} `}&#8381;
+              <span className={homeStyles.visuallyHidden}>
+                {getProperCurrencyMode(oldPrice)}
+              </span>
             </p>
           )}
         </div>
