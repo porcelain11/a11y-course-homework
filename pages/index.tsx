@@ -69,7 +69,7 @@ export default function Home(props: StaticProps) {
 
       <Header />
 
-      <main className={styles.main}>
+      <main className={styles.main} id='main-content'>
         <h1 className={styles.visuallyHidden}>Все для котов</h1>
         <section
           className={styles.contentSection}
