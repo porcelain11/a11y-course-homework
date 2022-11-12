@@ -42,7 +42,7 @@
   text-align: center;
   padding: 13px 25px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.5;
   box-shadow: none;
   border: 1px solid currentColor;
@@ -150,3 +150,7 @@
   overflow: hidden;
 }
 
+
+input[type="checkbox"].errorField {
+  border: 3px dashed #B22222;	
+}

@@ -10,7 +10,7 @@ export default function Footer() {
   const [isFormSent, setIsFormSent] = useState(false);
   const [isSubmitFailed, setIsSubmitFailed] = useState(false);
   const consentRef = useRef<HTMLInputElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
 
   const {
     values,
@@ -45,7 +45,6 @@ export default function Footer() {
         setIsFormSent(false);
       }, 4000);
     }
-
     return () => {
       clearTimeout(timer);
     };
@@ -56,9 +55,8 @@ export default function Footer() {
     if (isSubmitFailed) {
       timer2 = setTimeout(() => {
         setIsSubmitFailed(false);
-      }, 4000);
+      }, 1000);
     }
-
     return () => {
       clearTimeout(timer2);
     };
@@ -143,24 +141,21 @@ export default function Footer() {
         <form
           className={styles.subscribeForm}
           onSubmit={handleSubmit}
-          // noValidate
+          noValidate
         >
           <div className={styles.subscribeFormFieldsGroup}>
             <label className={styles.emailLabel}>
               {' '}
               <span>E-mail</span>
               <input
-                ref={inputRef}
-                required
+                ref={emailRef}
                 id='email'
                 className={`${styles.subsribe} ${
-                  errors.email && touched.email
-                    ? `${homeStyles.errorField}`
-                    : ''
+                  errors.email && touched.email ? `${styles.errorField}` : ''
                 }`}
                 type='email'
                 name='email'
-                aria-invalid={errors.email && touched.email ? true : false}
+                aria-invalid={errors.email ? true : false}
                 aria-required={true}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -175,23 +170,34 @@ export default function Footer() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 ref={consentRef}
-                // value={values.consent}
-                aria-invalid={errors.consent && touched.consent ? true : false}
                 aria-required={true}
+                className={
+                  errors.consent && touched.consent
+                    ? `${homeStyles.errorField}`
+                    : ''
+                }
+                // value={values.consent}
+                aria-invalid={errors.consent ? true : false}
               />
               <span>Согласен на обработку персональх данных</span>
             </label>
           </div>
 
-          {errors.email && (
+          {errors.email && touched.email && (
             <div className={styles.subscribeFormErrorMessage}>
               <ErrorMessage>{errors.email}</ErrorMessage>
             </div>
           )}
 
-          {errors.consent && (
+          {errors.consent && touched.consent && (
             <div className={styles.subscribeFormErrorMessage}>
               <ErrorMessage>{errors.consent}</ErrorMessage>
+            </div>
+          )}
+
+          {errors.email && document.activeElement === emailRef.current && (
+            <div className={homeStyles.visuallyHidden}>
+              <ErrorMessage>{errors.email}</ErrorMessage>
             </div>
           )}
 
@@ -221,7 +227,7 @@ export default function Footer() {
             className={`${styles.subscribeFormBtn} ${homeStyles.btn} ${homeStyles.btnInverted}`}
             type='submit'
             onClick={() => {
-              if (errors) {
+              if (errors.email || errors.consent) {
                 setIsSubmitFailed(true);
               }
             }}

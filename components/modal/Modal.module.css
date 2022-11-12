@@ -79,6 +79,10 @@
     line-height: 22px;
 }
 
+.modalFormInput.errorField {
+    border: 3px dashed #B22222;	
+}
+
 @media screen and (max-width: 800px) {
     .modalContent {
         width: 378px;

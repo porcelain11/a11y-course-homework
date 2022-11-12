@@ -150,13 +150,17 @@
     height: 1.5em;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-style: normal;
-    width: 303px;
+    width: 300px;
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
     margin-bottom: 20px;
     margin-right: 40px;
     background: transparent;
+}
+
+.subsribe.errorField {
+    border: 3px dashed #B22222;	
 }
 
 .subscribeFormSuccessMessage,

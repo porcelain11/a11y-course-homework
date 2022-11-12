@@ -20,10 +20,19 @@ function Modal(props: ModalProps) {
   const { isShown, handleClose, product } = props;
   const [isFormSent, setIsFormSent] = useState(false);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const fullnameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const adressRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    const handleEscapeClose = (evt: KeyboardEvent) =>
-      evt.key === 'Escape' ? handleClose() : null;
+    const handleEscapeClose = (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape') {
+        handleReset(evt);
+        handleClose();
+      }
+
+      return;
+    };
     document.body.addEventListener('keydown', handleEscapeClose);
 
     return () => {
@@ -55,7 +64,6 @@ function Modal(props: ModalProps) {
     if (isShown) {
       document.body.style.overflow = isShown ? 'hidden' : 'auto';
     }
-
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -68,7 +76,6 @@ function Modal(props: ModalProps) {
         setIsSubmitFailed(false);
       }, 4000);
     }
-
     return () => {
       clearTimeout(timer2);
     };
@@ -113,13 +120,13 @@ function Modal(props: ModalProps) {
 
   return (
     <FocusTrap active={isShown}>
-      <div
-        className={styles.modal}
-        role='dialog'
-        aria-modal='true'
-        aria-labelledby='modalHeading'
-      >
-        <div className={styles.modalContent}>
+      <div className={styles.modal}>
+        <div
+          className={styles.modalContent}
+          role='dialog'
+          aria-modal='true'
+          aria-labelledby='modalHeading modalSubHeading'
+        >
           <button
             ref={closeBtnRef}
             onClick={(evt) => handleModalClose(evt)}
@@ -140,8 +147,10 @@ function Modal(props: ModalProps) {
             </svg>
             <span className={homeStyles.visuallyHidden}>Закрыть</span>
           </button>
-          <h2 className={styles.modalHeading}>{productName}</h2>
-          <p className={styles.modalText} id='modalHeading'>
+          <h2 className={styles.modalHeading} id='modalHeading'>
+            {productName}
+          </h2>
+          <p className={styles.modalText} id='modalSubHeading'>
             Оформление заказа
           </p>
 
@@ -152,12 +161,13 @@ function Modal(props: ModalProps) {
             <fieldset>
               <legend>Имя и фамилия</legend>
               <input
+                ref={fullnameRef}
                 id='fullname'
                 type='text'
                 name='fullname'
                 className={`${styles.modalFormInput} ${
                   errors.fullname && touched.fullname
-                    ? `${homeStyles.errorField}`
+                    ? `${styles.errorField}`
                     : ''
                 }`}
                 onChange={handleChange}
@@ -175,17 +185,24 @@ function Modal(props: ModalProps) {
                   </ErrorMessage>
                 </div>
               )}
+              {errors.fullname &&
+                document.activeElement === fullnameRef.current && (
+                  <div className={homeStyles.visuallyHidden}>
+                    <ErrorMessage>
+                      Имя и фамилия должны содержать хотя бы по одному символу
+                    </ErrorMessage>
+                  </div>
+                )}
             </fieldset>
             <fieldset>
               <legend>E-mail</legend>
               <input
+                ref={emailRef}
                 id='email'
                 type='email'
                 name='email'
                 className={`${styles.modalFormInput} ${
-                  errors.email && touched.email
-                    ? `${homeStyles.errorField}`
-                    : ''
+                  errors.email && touched.email ? `${styles.errorField}` : ''
                 }`}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -201,6 +218,14 @@ function Modal(props: ModalProps) {
                   </ErrorMessage>
                 </div>
               )}
+              {errors.email && document.activeElement === emailRef.current && (
+                <div className={homeStyles.visuallyHidden}>
+                  <ErrorMessage>
+                    Пожалуйста ведите корректный e-mail, пример:
+                    ivan.ivanov@mail.ru
+                  </ErrorMessage>
+                </div>
+              )}
             </fieldset>
             <fieldset>
               <legend>Адрес доставки</legend>
@@ -208,13 +233,12 @@ function Modal(props: ModalProps) {
                 Введите полный почтовый адрес с индексом
               </span>
               <textarea
+                ref={adressRef}
                 id='adress'
                 name='adress'
                 rows={5}
                 className={`${styles.modalFormInput} ${
-                  errors.adress && touched.adress
-                    ? `${homeStyles.errorField}`
-                    : ''
+                  errors.adress && touched.adress ? `${styles.errorField}` : ''
                 }`}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -224,6 +248,14 @@ function Modal(props: ModalProps) {
               />
               {errors.adress && touched.adress && (
                 <div className={styles.errorMessage}>
+                  <ErrorMessage>
+                    Укажите полный почтовый адрес с индексом, адрес может
+                    содержать только цифры, буквы, запятые и пробелы
+                  </ErrorMessage>
+                </div>
+              )}
+              {errors.adress && document.activeElement === adressRef.current && (
+                <div className={homeStyles.visuallyHidden}>
                   <ErrorMessage>
                     Укажите полный почтовый адрес с индексом, адрес может
                     содержать только цифры, буквы, запятые и пробелы
@@ -265,7 +297,12 @@ function Modal(props: ModalProps) {
               className={`${homeStyles.btn} ${homeStyles.btnInverted} ${styles.modalSubmitBtn}`}
               type='submit'
               onClick={() => {
-                if (errors) {
+                if (
+                  errors.adress ||
+                  errors.email ||
+                  errors.fullname ||
+                  errors.pay
+                ) {
                   setIsSubmitFailed(true);
                 }
               }}
