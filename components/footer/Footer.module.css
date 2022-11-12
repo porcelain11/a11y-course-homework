@@ -78,7 +78,7 @@
 }
 
 .socialItemLink:hover{
-    outline: 2px solid #4682B4;
+    outline: 2px solid #8B4513;
     outline-offset: 3px;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .socialItemLink:hover svg{
-    fill: #4682B4;   
+    fill: #8B4513;  
 }
 
 
@@ -108,7 +108,7 @@
 .subscribeFormBtn {
     min-width: 280px;
     position: absolute;
-    top: 12px;
+    top: 10px;
     right: 0;
 }
 

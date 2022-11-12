@@ -7,10 +7,9 @@
     justify-content: center;
     align-items: center;
     margin: 0;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     padding: 40px;
     background-color: #FCFCFC;
-
 }
 
 .skipLink {
@@ -18,6 +17,7 @@
     top: 25px;
     left: 9%;
     text-decoration: none;
+    z-index: 10;
 }
 
 
@@ -50,6 +50,7 @@
 }
 
 .mainNavLink {
+    position: relative;
     color: #000000;
     text-decoration: none;
     cursor: pointer;
@@ -57,9 +58,19 @@
 }
 
 .mainNavLink:hover {
-    text-decoration: underline;
-    color: #4682B4;
+    position: relative;
+    color: 	#8B4513;
 }
+
+.mainNavLink:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 5%;
+    width: 90%;
+    height: 2px;
+    background-color: #8B4513;
+  }
 
 .mainNavLink:active {
    opacity: 0.6;
