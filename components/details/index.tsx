@@ -101,17 +101,15 @@ export default function Details() {
         </div>
 
         {tabData.map(({ id, text }, i) => (
-          <section
+          <div
             key={`${id}-tabpanel`}
             id={`tabpanel-${i + 1}`}
             role='tabpanel'
             aria-labelledby={`tab-${i + 1}`}
-            className={`${styles.detailsTabpanel} ${
-              activetabID === i + 1 ? `${styles.isHidden}` : ''
-            }`}
+            className={`${activetabID === i + 1 ? `${styles.isHidden}` : ''}`}
           >
             <p className={styles.tabpanelText}>{text}</p>
-          </section>
+          </div>
         ))}
       </div>
     </section>

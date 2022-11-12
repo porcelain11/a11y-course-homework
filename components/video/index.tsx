@@ -18,7 +18,6 @@ export default function Video() {
           height='315'
           src='https://www.youtube.com/embed/c6x-jIuEX6k?&cc_lang_pref=ru&cc_load_policy=1.'
           title='YouTube video player'
-          frameBorder='0'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen
           className={styles.videoFrame}

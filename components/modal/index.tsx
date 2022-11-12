@@ -16,6 +16,7 @@ type ModalProps = {
 };
 
 function Modal(props: ModalProps) {
+  const [isSubmitFailed, setIsSubmitFailed] = useState(false);
   const { isShown, handleClose, product } = props;
   const [isFormSent, setIsFormSent] = useState(false);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
@@ -59,6 +60,19 @@ function Modal(props: ModalProps) {
       document.body.style.overflow = 'auto';
     };
   }, [isShown]);
+
+  useEffect(() => {
+    let timer2: ReturnType<typeof setTimeout>;
+    if (isSubmitFailed) {
+      timer2 = setTimeout(() => {
+        setIsSubmitFailed(false);
+      }, 4000);
+    }
+
+    return () => {
+      clearTimeout(timer2);
+    };
+  }, [isSubmitFailed]);
 
   const {
     values,
@@ -250,10 +264,26 @@ function Modal(props: ModalProps) {
               disabled={isSubmitting}
               className={`${homeStyles.btn} ${homeStyles.btnInverted} ${styles.modalSubmitBtn}`}
               type='submit'
+              onClick={() => {
+                if (errors) {
+                  setIsSubmitFailed(true);
+                }
+              }}
             >
               Отправить
             </button>
           </form>
+          {isSubmitFailed && (
+            <div className={styles.subscribeFormSuccessMessage}>
+              <div
+                className={homeStyles.visuallyHidden}
+                role='status'
+                aria-live='polite'
+              >
+                Форма не отправлена, не все поля заполнены
+              </div>
+            </div>
+          )}
           {isFormSent && (
             <div className={styles.successMessage}>
               <SuccessMessage>

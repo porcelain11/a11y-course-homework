@@ -80,7 +80,7 @@ export default function ProductCard(props: ProductCardProps) {
             <g></g>
           </svg>
         </div>
-        <p className={styles.title}>{productName}</p>
+        <h3 className={styles.title}>{productName}</h3>
         <div className={styles.price}>
           <p
             style={{
